@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Huella de Carbono | Rutas Cero Carbono</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🌱 Rutas Cero Carbono</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Inicio</a>
+                <a href="reto-movilidad.html">Reto Movilidad</a>
+                <a href="tu-huella.html" class="active">Tu Huella</a>
+                <a href="propuesta.html">Propuesta de Valor</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-calculadora">
+        <div class="container">
+            <h2>🚗 Calcula Tu Huella de Carbono</h2>
+            <p class="hero-subtitle">Descubre el impacto ambiental de tus desplazamientos diarios y encuentra alternativas más sostenibles</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                
+                <!-- Formulario Calculadora -->
+                <div class="calculadora-section">
+                    <div class="card">
+                        <h3>📋 Datos de tu Desplazamiento</h3>
+                        <p class="card-intro">Completa los siguientes datos para calcular tu huella de carbono</p>
+                        
+                        <form id="calculadora-form">
+                            <!-- Distancia -->
+                            <div class="form-group">
+                                <label for="distancia">
+                                    <span class="label-icon">📍</span>
+                                    Distancia del trayecto (solo ida)
+                                </label>
+                                <div class="input-wrapper">
+                                    <input 
+                                        type="number" 
+                                        id="distancia" 
+                                        name="distancia" 
+                                        placeholder="Ej: 15" 
+                                        min="0.1" 
+                                        step="0.1" 
+                                        required
+                                    >
+                                    <span class="input-suffix">km</span>
+                                </div>
+                                <small class="help-text">Introduce la distancia desde tu casa hasta el trabajo</small>
+                            </div>
+
+                            <!-- Medio de Transporte -->
+                            <div class="form-group">
+                                <label for="transporte">
+                                    <span class="label-icon">🚙</span>
+                                    Medio de transporte habitual
+                                </label>
+                                <select id="transporte" name="transporte" required>
+                                    <option value="">-- Selecciona tu medio de transporte --</option>
+                                    <optgroup label="🚗 Vehículo Privado">
+                                        <option value="coche_gasolina">Coche gasolina</option>
+                                        <option value="coche_diesel">Coche diésel</option>
+                                        <option value="coche_hibrido">Coche híbrido</option>
+                                        <option value="coche_electrico">Coche eléctrico</option>
+                                        <option value="moto">Motocicleta</option>
+                                    </optgroup>
+                                    <optgroup label="🚇 Transporte Público">
+                                        <option value="autobus">Autobús</option>
+                                        <option value="metro">Metro</option>
+                                        <option value="tren_cercanias">Tren de cercanías</option>
+                                    </optgroup>
+                                    <optgroup label="🚴 Movilidad Sostenible">
+                                        <option value="bicicleta">Bicicleta</option>
+                                        <option value="patinete_electrico">Patinete eléctrico</option>
+                                        <option value="caminando">A pie</option>
+                                    </optgroup>
+                                </select>
+                                <div id="info-transporte" class="info-transporte"></div>
+                            </div>
+
+                            <!-- Días a la semana -->
+                            <div class="form-group">
+                                <label for="dias-semana">
+                                    <span class="label-icon">📅</span>
+                                    Días que te desplazas por semana
+                                </label>
+                                <select id="dias-semana" name="dias-semana" required>
+                                    <option value="5" selected>5 días (Lunes a Viernes)</option>
+                                    <option value="6">6 días</option>
+                                    <option value="7">7 días</option>
+                                    <option value="4">4 días</option>
+                                    <option value="3">3 días</option>
+                                    <option value="2">2 días</option>
+                                    <option value="1">1 día</option>
+                                </select>
+                            </div>
+
+                            <!-- Botón Calcular -->
+                            <button type="submit" id="btn-calcular" class="btn-primary">
+                                🧮 Calcular Mi Huella
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Información de Metodología -->
+                    <div class="metodologia-info">
+                        <h4>📚 Metodología Utilizada</h4>
+                        <p>Los cálculos se basan en los <strong>factores de emisión oficiales del MITECO</strong> (Ministerio para la Transición Ecológica y el Reto Demográfico de España) y datos del <strong>IPCC</strong> (Panel Intergubernamental sobre Cambio Climático).</p>
+                        <ul>
+                            <li>✓ Datos actualizados 2024-2025</li>
+                            <li>✓ Adaptados al contexto español</li>
+                            <li>✓ Incluye mix energético nacional</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Área de Resultados -->
+                <div class="resultados-section">
+                    <div id="resultados" style="display: none;">
+                        <!-- Los resultados se insertan dinámicamente aquí -->
+                    </div>
+
+                    <!-- Consejos iniciales -->
+                    <div class="consejos-card" id="consejos-iniciales">
+                        <h3>💡 ¿Sabías que...?</h3>
+                        <div class="consejo-item">
+                            <span class="consejo-icon">🌍</span>
+                            <p>El transporte representa el <strong>27%</strong> de las emisiones de CO₂ en España</p>
+                        </div>
+                        <div class="consejo-item">
+                            <span class="consejo-icon">🚗</span>
+                            <p>Un coche de gasolina emite en promedio <strong>2.3 toneladas de CO₂ al año</strong></p>
+                        </div>
+                        <div class="consejo-item">
+                            <span class="consejo-icon">🚇</span>
+                            <p>El metro emite <strong>78% menos CO₂</strong> que un coche diésel</p>
+                        </div>
+                        <div class="consejo-item">
+                            <span class="consejo-icon">🚴</span>
+                            <p>Cambiar a bicicleta puede ahorrar hasta <strong>1.5 toneladas de CO₂/año</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Sección de Beneficios -->
+    <section class="beneficios-section">
+        <div class="container">
+            <h3>🌟 Beneficios de Reducir tu Huella</h3>
+            <div class="beneficios-grid">
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🌱</div>
+                    <h4>Medio Ambiente</h4>
+                    <p>Contribuyes directamente a la lucha contra el cambio climático</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">💰</div>
+                    <h4>Ahorro Económico</h4>
+                    <p>Reduce gastos en combustible, mantenimiento y parking</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">💪</div>
+                    <h4>Salud</h4>
+                    <p>Mejora tu salud física con opciones de movilidad activa</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🏙️</div>
+                    <h4>Ciudad</h4>
+                    <p>Ayudas a descongestionar el tráfico y mejorar la calidad del aire</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🌱 Rutas Cero Carbono, S.L.</h4>
+                    <p>Comprometidos con la movilidad sostenible y la reducción de emisiones corporativas</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="reto-movilidad.html">Reto Movilidad</a></li>
+                        <li><a href="tu-huella.html">Tu Huella</a></li>
+                        <li><a href="propuesta.html">Propuesta de Valor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📧 info@rutaszerocarbono.es</p>
+                    <p>📞 +34 900 000 000</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rutas Cero Carbono, S.L. | Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="calculadora.js"></script>
+</body>
+</html>
